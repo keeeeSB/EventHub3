@@ -1,0 +1,3 @@
+<p>こんにちは、<%= @user.name %> さん！</p>
+<p>以下のリンクをクリックしてアカウントを有効化してください。</p>
+<%= link_to 'アカウントを有効化', activate_account_url(token: @user.activation_token) %>
