@@ -6,9 +6,9 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :password_digest
       t.string :profile_image
       t.text :bio
-      t.string :activation_token
+      t.string :activation_digest
       t.boolean :activated, default: false
-      t.string :ctivated_atdatetime
+      t.datetime :activated_at
 
       t.timestamps
     end
