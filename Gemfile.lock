@@ -99,6 +99,10 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     debug_inspector (1.2.0)
+    dotenv (3.1.4)
+    dotenv-rails (3.1.4)
+      dotenv (= 3.1.4)
+      railties (>= 6.1)
     erubi (1.13.0)
     execjs (2.10.0)
     ffi (1.17.0-arm64-darwin)
@@ -247,6 +251,7 @@ DEPENDENCIES
   bootstrap (~> 5.3.0)
   carrierwave (~> 2.0)
   debug
+  dotenv-rails
   importmap-rails
   jbuilder
   jquery-rails
