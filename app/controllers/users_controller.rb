@@ -6,12 +6,14 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    UserMailer.account_activation(@user).deliver_now
-    flash[:info] = "アカウント認証用メールを送信しました！確認してください。"
-    redirect_to root_path
-  else
-    flash.now[:danger] = "登録できませんでした。"
-    render :new, status: :unprocessable_entity
+    if @user.save
+      UserMailer.account_activation(@user).deliver_now
+      flash[:info] = "アカウント認証用メールを送信しました！確認してください。"
+      redirect_to root_path
+    else
+      flash.now[:danger] = "登録できませんでした。"
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
