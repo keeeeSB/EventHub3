@@ -1,9 +1,10 @@
 class AccountActivationsController < ApplicationController
 
   def edit
-    user = User.find_by(activation_token: params[:token])
-    if user && !user.activated
-      user.update(activated: true, activated_at: Time.zone.now)
+    user = User.find_by(email: params[:email])
+    if user && !user.activated? && user.authenticated?(:activation, params[:id])
+      user.activate
+      log_in user
       flash[:success] = "アカウントを承認しました。"
       redirect_to user
     else
