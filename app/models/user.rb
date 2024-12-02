@@ -5,6 +5,8 @@ class User < ApplicationRecord
   mount_uploader :profile_image, ProfileImageUploader
   has_secure_password
 
+  has_many :events, dependent: :destroy
+
   validates :name,  presence: true
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: URI::MailTo::EMAIL_REGEXP },
