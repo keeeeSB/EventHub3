@@ -2,7 +2,7 @@
 
 <div class="row justify-content-center">
   <div class="col-md-6">
-    <%= form_with(model: @event, local: true) do |f| %>
+    <%= form_with(model: @event, url: user_events_path, local: true) do |f| %>
 
       <div class="mb-3">
         <%= f.label :title, "タイトル", class: "form-label" %>
@@ -16,7 +16,7 @@
 
       <div class="mb-3">
         <%= f.label :start_time, "開催日時", class: "form-label" %>
-        <%= f.date_field :start_time, class: "form-control" %>
+        <%= f.datetime_field :start_time, class: "form-control" %>
       </div>
 
       <div class="mb-3">
