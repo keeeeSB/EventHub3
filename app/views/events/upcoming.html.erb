@@ -1,0 +1,36 @@
+<h2 class="text-center">未開催イベント一覧</h2>
+
+<% @events.each do |event| %>
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h5 class="card-title mb-0 text-center">
+            <%= event.title %>
+          </h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <strong>概要:</strong> <%= event.description %>
+          </p>
+          <p class="card-text">
+            <strong>開催日時:</strong> <%= event.start_time.strftime('%Y年%m月%d日 %H:%M') %>
+          </p>
+          <p class="card-text">
+            <strong>場所:</strong> <%= event.location %>
+          </p>
+          <% if event.category.present? %>
+            <p class="card-text">
+              <strong>カテゴリー:</strong> <%= event.category.name %>
+            </p>
+          <% end %>
+        </div>
+        <div class="card-footer text-center">
+          <%= link_to '編集', edit_user_event_path(event.user, event), class: 'btn btn-outline-secondary btn-sm' %>
+          <%= link_to '削除', user_event_path(event.user, event), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
+                                                                 class: 'btn btn-danger btn-sm' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

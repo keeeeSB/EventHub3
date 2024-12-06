@@ -6,7 +6,12 @@ Rails.application.routes.draw do
   post "/login",    to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   resources :users, only: [:show] do
-    resources :events
+    resources :events do
+      collection do
+        get :upcoming
+        get :past
+      end
+    end
   end
   resources :account_activations, only: [:edit]
 end
