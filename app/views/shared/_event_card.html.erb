@@ -1,0 +1,16 @@
+<div class="col-md-6 mb-4">
+  <div class="card shadow-sm border-light">
+    <div class="card-body">
+      <p class="card-text"><%= event.description.truncate(100) %></p>
+      <p><strong>開催日時:</strong>   <%= event.start_time.strftime("%Y年%m月%d日 %H:%M") %></p>
+      <p><strong>開催場所:</strong>   <%= event.location %></p>
+      <p><strong>カテゴリー:</strong> <%= event.category.name %>
+      </p>
+      <% if event.user == current_user %>
+        <%= link_to "編集", edit_user_event_path(event.user, event), class: "btn btn-warning btn-sm" %>
+        <%= link_to "削除", user_event_path(event.user, event), class: "btn btn-danger btn-sm",
+                                            data: { "turbo-method": :delete, turbo_confirm: "本当に削除しますか？" } %>
+      <% end %>
+    </div>
+  </div>
+</div>

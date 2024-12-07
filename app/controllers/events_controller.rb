@@ -2,11 +2,11 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def upcoming
-    @events = Event.upcoming.popular
+    @events = Event.upcoming#.popular
   end
 
   def past
-    @events = Event.past.avarage_reviews_rating
+    @events = Event.past#.avarage_reviews_rating
   end
 
   def new

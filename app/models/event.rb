@@ -10,15 +10,15 @@ class Event < ApplicationRecord
   # 開催日時が過ぎていないイベント
   scope :upcoming, -> { where('start_time >= ?', Time.current) }
   # 人気順に並び替え
-  scope :popular, -> { left_joins(:joins)
-                       .group(:id)
-                       .order('COUNT(joins.id) DESC') }
+  # scope :popular, -> { left_joins(:joins)
+                      #  .group(:id)
+                      #  .order('COUNT(joins.id) DESC') }
 
   # 開催日時が過ぎたイベント
   scope :past,     -> { where('start_time < ?',  Time.current) }
   # レビューの平均順に並び替え
-  scope :avarage_reviews_rating, -> { left_joins(:reviews)
-                              .select('events.*, COALESCE(AVG(reviews.rating), 0) AS average_rating')
-                              .group('events.id')
-                              .order(average_rating: :desc)}
+  # scope :avarage_reviews_rating, -> { left_joins(:reviews)
+                              # .select('events.*, COALESCE(AVG(reviews.rating), 0) AS average_rating')
+                              # .group('events.id')
+                              # .order(average_rating: :desc)}
 end
