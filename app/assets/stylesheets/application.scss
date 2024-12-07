@@ -1,1 +1,8 @@
 @import "bootstrap";
+
+.profile-image {
+  width: 150px; /* 画像の幅を指定 */
+  height: 150px; /* 画像の高さを指定 */
+  object-fit: cover; /* アスペクト比を保ちつつ画像をトリミング */
+  border-radius: 50%; /* 角を丸くする */
+}
