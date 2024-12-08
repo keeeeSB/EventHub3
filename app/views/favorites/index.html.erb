@@ -1,7 +1,13 @@
 <h2 class="text-center mb-5">お気に入りイベント一覧</h2>
 
 <div class="row justify-content-center">
-  <% @favorite_events.each do |event| %>
-    <%= render "shared/event_card", event: event %>
+  <% if @favorite_events.present? %>
+    <% @favorite_events.each do |event| %>
+      <%= render "shared/event_card", event: event %>
+    <% end %>
+  <% else %>
+    <div class="text-center">
+      <p>お気に入りのイベントがありません。寂しいですね〜。</p>
+    </div>
   <% end %>
 </div>
