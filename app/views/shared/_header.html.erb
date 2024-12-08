@@ -9,16 +9,18 @@
     <li><%= link_to "ホーム", root_path, class: "nav-link px-2 link-secondary" %></li>
     <% if logged_in? %>
       <li><%= link_to "イベント作成", new_user_event_path(current_user), class: "nav-link px-2 link-secondary" %></li>
+      <li><%= link_to "お気に入り", user_favorites_path(current_user), class: "nav-link px-2 link-secondary" %></li>
+      <li><%= link_to "参加予定イベント", user_joins_path(current_user), class: "nav-link px-2 link-secondary" %></li>
     <% end %>
   </ul>
 
   <div class="col-md-3 text-end me-3">
     <% if logged_in? %>
-      <%= link_to "プロフィール", current_user, class: "btn btn-outline-success me-2" %>
-      <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete }, class: "btn btn-outline-danger" %>
+      <%= link_to "プロフィール", current_user, class: "btn btn-outline-success btn-sm me-2" %>
+      <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete }, class: "btn btn-outline-danger btn-sm" %>
     <% else %>
-      <%= link_to "新規登録", signup_path, class: "btn btn-success me-2" %>
-      <%= link_to "ログイン", login_path, class: "btn btn-info" %>
+      <%= link_to "新規登録", signup_path, class: "btn btn-success btn-sm me-2" %>
+      <%= link_to "ログイン", login_path, class: "btn btn-info btn-sm" %>
     <% end %>
   </div>
 </header>

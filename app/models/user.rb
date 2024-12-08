@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :events,     dependent: :destroy
   has_many :joins,      dependent: :destroy
   has_many :favorites,  dependent: :destroy
+  has_many :favorite_events, through: :favorites, source: :event
 
   validates :name,  presence: true
   validates :email, presence: true, length: { maximum: 255 },

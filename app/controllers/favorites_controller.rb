@@ -1,5 +1,9 @@
 class FavoritesController < ApplicationController
 
+  def index
+    @favorite_events = current_user.favorite_events.order(start_time: :asc)
+  end
+
   def create
     favorite = current_user.favorites.build(event_id: params[:event_id])
     if favorite.save
