@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   belongs_to :category
   has_many :joins,     dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :reviews,   dependent: :destroy
 
   validates :title, presence: true
   validates :description, presence: true
