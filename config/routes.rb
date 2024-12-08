@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         get :upcoming
         get :past
       end
+      resource :join, only: [:create, :destroy]
     end
   end
   resources :account_activations, only: [:edit]

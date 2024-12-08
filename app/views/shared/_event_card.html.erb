@@ -1,5 +1,18 @@
 <div class="col-md-6 mb-4">
   <div class="card shadow-sm border-light">
+    <% if logged_in? %>
+      <% if current_user.joins.exists?(event_id: event.id) %>
+        <%= link_to "参加取り消し", user_event_join_path(current_user, event, current_user.joins.find_by(event_id: event.id)), 
+                                  data: { turbo_method: :delete },
+                                  class: "btn btn-danger btn-sm",
+                                  style: "position: absolute; top: 10px; right: 45px;" %>
+      <% else %>
+        <%= link_to "参加申し込み", user_event_join_path(current_user, event),
+                                  data: { turbo_method: :post },
+                                  class: "btn btn-outline-success btn-sm",
+                                  style: "position: absolute; top: 10px; right: 45px;" %>
+      <% end %>
+    <% end %>
     <div class="card-body">
       <p class="card-text"><%= event.description.truncate(100) %></p>
       <p><strong>開催日時:</strong>   <%= event.start_time.strftime("%Y年%m月%d日 %H:%M") %></p>
