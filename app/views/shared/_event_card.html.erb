@@ -12,6 +12,19 @@
                                   class: "btn btn-outline-success btn-sm",
                                   style: "position: absolute; top: 10px; right: 45px;" %>
       <% end %>
+      <% if current_user.favorites.exists?(event_id: event.id) %>
+        <%= link_to user_event_favorite_path(current_user, event, current_user.favorites.find_by(event_id: event.id)),
+                    data: { turbo_method: :delete },
+                    style: "position: absolute; top: 12px; right: 10px;" do %>
+          <%= image_tag "star-fill.svg" %>
+        <% end %>
+      <% else %>
+        <%= link_to user_event_favorite_path(current_user, event),
+                    data: { turbo_method: :post },
+                    style: "position: absolute; top: 12px; right: 10px;" do %>
+          <%= image_tag "star.svg" %>
+        <% end %>
+      <% end %>
     <% end %>
     <div class="card-body">
       <p class="card-text"><%= event.description.truncate(100) %></p>

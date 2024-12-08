@@ -3,7 +3,7 @@ class FavoritesController < ApplicationController
   def create
     favorite = current_user.favorites.build(event_id: params[:event_id])
     if favorite.save
-      flah[:success] = "お気に入りに登録しました。"
+      flash[:success] = "お気に入りに登録しました。"
     else
       flash.now[:danger] = "お気に入りに登録できませんでした。"
     end
