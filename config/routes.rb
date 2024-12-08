@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       resource :join,     only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
     end
+    resources :joins,     only: [:index]
+    resources :favorites, only: [:index]
   end
   resources :account_activations, only: [:edit]
 end
