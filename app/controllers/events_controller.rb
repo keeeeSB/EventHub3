@@ -1,8 +1,9 @@
 class EventsController < ApplicationController
+  skip_before_action :require_login, only: [:upcoming, :past]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def upcoming
-    @events = Event.upcoming#.popular
+    @events = Event.upcoming.popular
   end
 
   def past

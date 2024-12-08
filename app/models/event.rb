@@ -1,7 +1,8 @@
 class Event < ApplicationRecord
   belongs_to :user
   belongs_to :category
-  has_many :joins, dependent: :destroy
+  has_many :joins,     dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   validates :title, presence: true
   validates :description, presence: true
@@ -11,9 +12,9 @@ class Event < ApplicationRecord
   # 開催日時が過ぎていないイベント
   scope :upcoming, -> { where('start_time >= ?', Time.current) }
   # 人気順に並び替え
-  # scope :popular, -> { left_joins(:joins)
-                      #  .group(:id)
-                      #  .order('COUNT(joins.id) DESC') }
+  scope :popular, -> { left_joins(:joins)
+                       .group(:id)
+                       .order('COUNT(joins.id) DESC') }
 
   # 開催日時が過ぎたイベント
   scope :past,     -> { where('start_time < ?',  Time.current) }

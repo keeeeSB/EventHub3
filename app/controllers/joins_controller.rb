@@ -1,5 +1,9 @@
 class JoinsController < ApplicationController
 
+  def index
+    @join_events = current_user.join_events.order(start_time: :asc)
+  end
+
   def create
     join = current_user.joins.build(event_id: params[:event_id])
     if join.save
