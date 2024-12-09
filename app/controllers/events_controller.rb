@@ -4,6 +4,7 @@ class EventsController < ApplicationController
 
   def upcoming
     @events = Event.upcoming.popular
+    @users = User.includes(:event)
   end
 
   def past
@@ -32,6 +33,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @reviews = @event.reviews.include(:user).order(created_at: :desc)
   end
 
   def edit
