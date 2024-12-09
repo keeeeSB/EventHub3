@@ -1,8 +1,8 @@
 class ReviewsController < ApplicationController
+  before_action :set_event
 
   def create
-    event = Event.find_by(id: params[:event_id])
-    review = current_user.review.build(review_params)
+    review = current_user.review.build(event_id: params[:event_id], review_params)
     if review.save
       flash[:success] = "レビューを作成しました。"
     else
@@ -15,12 +15,16 @@ class ReviewsController < ApplicationController
     review = current_user.review.find_by(event_id: params[:event_id])
     review.destroy!
     flash[:success] = "レビューを削除しました。"
-    redirect_to 
+    redirect_to user_event_path(event.user), status: :see_other
   end
 
   private
 
     def review_params
       params.require(:review).permit(:body, :rating)
+    end
+
+    def set_event
+      event = Event.find_by(id: params[:event_id])
     end
 end
