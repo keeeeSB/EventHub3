@@ -5,7 +5,13 @@
 </h4>
 
 <div class="row justify-content-center">
-  <% @events.each do |event| %>
-    <%= render "shared/event_card", event: event %>
+  <% if @events.present? %>
+    <% @events.each do |event| %>
+      <%= render "shared/event_card", event: event %>
+    <% end %>
+  <% else %>
+    <div class="text-center">
+      <p>イベントがありません。寂しいですね〜。</p>
+    </div>
   <% end %>
 </div>

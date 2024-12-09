@@ -5,6 +5,8 @@ class Event < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :reviews,   dependent: :destroy
 
+  accepts_nested_attributes_for :category, reject_if: ->(attributes){ attributes['name'].blank? }
+
   validates :title, presence: true
   validates :description, presence: true
   validates :start_time, presence: true

@@ -19,7 +19,7 @@ class EventsController < ApplicationController
 
   def create
     if event_params[:category_id].present?
-      @event = current_user.events.build(event_params.except(:categpry_attributes))
+      @event = current_user.events.build(event_params.except(:category_attributes))
     else
       @event = current_user.events.build(event_params)
     end
@@ -33,7 +33,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @reviews = @event.reviews.include(:user).order(created_at: :desc)
+    @reviews = @event.reviews.includes(:user).order(created_at: :desc)
   end
 
   def edit
@@ -59,10 +59,10 @@ class EventsController < ApplicationController
 
     def event_params
       params.require(:event).permit(:title, :description, :start_time,
-                                    :location, :category_id, category_attributes: [:id, :name])
+                                    :location, :category_id, category_attributes: [:name])
     end
 
     def set_event
-      @event = current_user.events.find(params[:id])
+      @event = Event.find(params[:id])
     end
 end
