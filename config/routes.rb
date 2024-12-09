@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       end
       resource :join,     only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
+      resource :review,   only: [:create, :destroy]
     end
     resources :joins,     only: [:index]
     resources :favorites, only: [:index]

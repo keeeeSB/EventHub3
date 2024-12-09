@@ -1,2 +1,21 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<div class="col-md-8 mx-auto">
+  <%= render "event" %>
+
+  <div class="mt-4">
+    <% if @reviews.present? %>
+      <h4 class="mb-3">レビュー</h4>
+      <% @reviews.each do |review| %>
+        <%= render "review", review: review, event: @event %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <% if logged_in? %>
+    <div class="mt-4">
+      <h4 class="mb-3">レビューを投稿する</h4>
+      <%= render "review_form" %>
+    </div>
+  <% else %>
+    <p class="text-center mt-4">レビューを投稿するには<%= link_to "ログイン", login_path %>してください。</p>
+  <% end %>
+</div>
