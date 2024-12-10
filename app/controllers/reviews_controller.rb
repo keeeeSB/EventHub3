@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :set_event, only: [:create, :destroy]
+  before_action :set_event,  only: [:create, :edit, :update, :destroy]
+  before_action :set_review, only: [:edit, :update, :destroy]
 
   def create
     @review = current_user.build_review(review_params)
@@ -11,8 +12,20 @@ class ReviewsController < ApplicationController
     redirect_to user_event_path(@event.user, @event)
   end
 
+  def edit
+  end
+
+  def update
+    @review.update(review_params)
+    if @review.save
+      flash[:success] = "レビューを更新しました。"
+    else
+      flash[:danger] = "レビューを更新できませんでした。"
+    end
+    redirect_to user_event_path(@event.user, @event)
+  end
+
   def destroy
-    @review = Review.find_by(user: current_user, event: @event)
     @review.destroy!
     flash[:success] = "レビューを削除しました。"
     redirect_to user_event_path(@event.user, @event), status: :see_other
@@ -26,5 +39,9 @@ class ReviewsController < ApplicationController
 
     def set_event
       @event = Event.find(params[:event_id])
+    end
+
+    def set_review
+      @review = Review.find_by(user: current_user, event: @event)
     end
 end
