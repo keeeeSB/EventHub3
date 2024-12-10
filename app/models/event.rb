@@ -3,6 +3,9 @@ class Event < ApplicationRecord
   belongs_to :category
   has_many :joins,     dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :reviews,   dependent: :destroy
+
+  accepts_nested_attributes_for :category, reject_if: ->(attributes){ attributes['name'].blank? }
 
   validates :title, presence: true
   validates :description, presence: true

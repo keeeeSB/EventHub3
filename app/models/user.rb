@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :join_events, through: :joins, source: :event
   has_many :favorites,  dependent: :destroy
   has_many :favorite_events, through: :favorites, source: :event
+  has_one :review,      dependent: :destroy
 
   validates :name,  presence: true
   validates :email, presence: true, length: { maximum: 255 },
