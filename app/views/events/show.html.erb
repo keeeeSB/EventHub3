@@ -12,8 +12,12 @@
 
   <% if logged_in? %>
     <div class="mt-4">
-      <h4 class="mb-3">レビューを投稿する</h4>
-      <%= render "review_form" %>
+      <% if current_user.review.nil? %>
+        <h4 class="mb-3">レビューを投稿する</h4>
+        <%= render "review_form" %>
+      <% else %>
+        <p class="text-muted">既にレビューを投稿済みです。</p>
+      <% end %>
     </div>
   <% else %>
     <p class="text-center mt-4">レビューを投稿するには<%= link_to "ログイン", login_path %>してください。</p>
