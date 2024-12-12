@@ -62,6 +62,10 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   # require only the support files necessary.
-Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+  Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
+  # FactoryBotの省略
+  config.include FactoryBot::Syntax::Methods
+  # module読み込み
+  config.include LoginModule
 end
