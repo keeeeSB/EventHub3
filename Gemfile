@@ -59,6 +59,12 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rspec-rails', '~> 6.1.0'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'capybara'
+  gem 'selenium-webdriver' # JSが必要な場合に利用
+  gem 'webdrivers'         # 最新のWebDriverを自動でインストール
 end
 
 group :development do
